@@ -6,7 +6,7 @@ const helpers = require('../helpers/util');
 const url = require('url');
 
 
-router.get('/', helpers.checkNotAuthenticated, async (req, res) =>{
+router.get('/', helpers.checkNotAuthenticated, helpers.isAdmin, async (req, res) =>{
 	var id = url.parse(req.url, true);
 	var iddata = id.query;
 	note = await db.Note.findOne({

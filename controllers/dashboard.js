@@ -4,7 +4,7 @@ const router = express.Router();
 const { Connection } = require('pg');
 const helpers = require('../helpers/util');
 
-router.get('/', helpers.checkNotAuthenticated, async (req, res) =>{
+router.get('/', helpers.checkNotAuthenticated, helpers.isAdmin, async (req, res) =>{
 	notes = await db.Note.findAll({
 		where: {userID: req.user.id}
 	})

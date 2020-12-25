@@ -5,7 +5,7 @@ const { Connection } = require('pg');
 const helpers = require('../helpers/util');
 const url = require('url');
 
-router.get('/', helpers.checkNotAuthenticated, async (req, res) =>{
+router.get('/', helpers.checkNotAuthenticated, helpers.isUser, async (req, res) =>{
 	var id = url.parse(req.url, true);
 	var iddata = id.query;
 	notes = await db.Note.findAll({
